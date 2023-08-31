@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='style.css'>
-    <title>Etch-A-Sketch</title>
+    <title>Hov-R-Sketch</title>
 </head>
+
 <body>
-    <h1 id='title-bar'>Etch-A-Sketch</h1>
-    <div class = 'tablet'>
-        <div class='screen'>
-
-        </div>
-        <div class='knob-row'>
-            <div class='knob' id='horizontal-knob'>
-
+    <div class='primary-body'>
+        <div class='sidebar'>
+            <div class='pixel-selection'>
+                <h4>Pixel Resolution</h4>
+                <button data-size='16' class='resolution-button'>16x16</button>
+                <button data-size='32' class='resolution-button'>32x32</button>
+                <button data-size='100' class='resolution-button'>100x100</button>
             </div>
-            <div class='knob' id='vertical-knob'>
-                
+            <p>Hi! This project is a work in progress by Kim Baram!</p>
+        </div>
+        <div class='main-panel'>
+            <span id='title-bar'>Hov-R-Sketch</span>
+            <span id='subtitle-bar'>Roll the mouse over the tablet screen to draw!</span>
+            <div class='tablet'>
+                <div class='screen'></div>
+                <div class='knob-row'>
+                    <div class='knob' id='horizontal-knob'>
+
+                    </div>
+                    <div class='knob' id='vertical-knob'>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
+
 </body>
 <script src='eas.js'></script>
+
 </html>

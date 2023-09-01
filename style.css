@@ -22,13 +22,61 @@ body{
 .sidebar{
     display: flex;
     flex-direction: column;
+    justify-content: start;
     background-color: black;
-    color: white;
+    color: goldenrod;
     width: 10vw;
-    padding: 5vmin;
+    padding: 15vmin 5vmin;
     align-items: center;
     border-right: 4px groove #edf2f4;
+    font-size: 16px;
+    font-weight: 900;
+    text-shadow: 0 0 2px #edf2f4;
+    gap: 8px;
 }
+
+.sidebar-button-row{
+    display: flex;
+    gap: 2px;
+    justify-content:space-between;
+}
+
+.selection-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 2px;
+    width: 100%;
+    height: 20vh;
+}
+
+#erase-button{
+    background-color: #2b2d42;
+    color: goldenrod;
+    text-shadow: 0 0 2px palegoldenrod;
+    border: 2px solid;
+    border-radius: 4px;
+    box-shadow: 0 0 8px palegoldenrod;
+    font-size: 18px;
+    font-weight: 700;
+    height: 8vh;
+}
+
+.resolution-button{
+    background-color: black;
+    color: #edf2f4;
+    border: 2px solid;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    width: 100%;
+}
+
+#pen-color{
+    width: 80%;
+    height: 10vh;
+}
+
 
 .main-panel{
     background-color: #2b2d42;

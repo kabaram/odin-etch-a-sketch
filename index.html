@@ -11,17 +11,28 @@
 <body>
     <div class='primary-body'>
         <div class='sidebar'>
-            <div class='pixel-selection'>
-                <h4>Pixel Resolution</h4>
-                <button data-size='16' class='resolution-button'>16x16</button>
-                <button data-size='32' class='resolution-button'>32x32</button>
-                <button data-size='100' class='resolution-button'>100x100</button>
+            <div class='selection-container'>
+                <button id='erase-button'>Erase</button>
             </div>
-            <p>Hi! This project is a work in progress by Kim Baram!</p>
+            <div class='selection-container'>
+                <p>Pixel Resolution</p>
+                <div class='sidebar-button-row'>
+                    <button data-size='16' class='resolution-button' id='initial-res-button'>16x16</button>
+                    <button data-size='32' class='resolution-button'>32x32</button>
+                </div>
+                <div class='sidebar-button-row'>
+                    <button data-size='50' class='resolution-button'>50x50</button>
+                    <button data-size='100' class='resolution-button'>100x100</button>
+                </div>
+            </div>
+            <div class='selection-container'>
+                <p>Pen Color</p>
+                <input type='color' id='pen-color' value='#2b2d42'>
+            </div>
         </div>
         <div class='main-panel'>
             <span id='title-bar'>Hov-R-Sketch</span>
-            <span id='subtitle-bar'>Roll the mouse over the tablet screen to draw!</span>
+            <span id='subtitle-bar'>Hover over the tablet screen to draw!</span>
             <div class='tablet'>
                 <div class='screen'></div>
                 <div class='knob-row'>

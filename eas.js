@@ -1,7 +1,24 @@
+//Toggle action listener for coloring
+function toggleColor() {
+    coloring = !coloring;
+    activatePixels();
+}
+
 //Add functionality to color pixels on mouse hover
 function activatePixels() {
-    let allPixels = Array.from(document.querySelectorAll('.pixel'));
-    allPixels.forEach((pixel) => pixel.addEventListener('mouseenter', function () { pixel.style.backgroundColor = pixelColor }));
+
+    if (coloring == true) {
+        for (let i = 0; i < allPixels.length; i++){
+            pixelListeners.push(function(){allPixels[i].style.backgroundColor = pixelColor;});
+            allPixels[i].addEventListener('mouseenter', pixelListeners[i]);
+        }
+    }
+    else {
+        for (let i = 0; i < allPixels.length; i++){
+            allPixels[i].removeEventListener('mouseenter', pixelListeners[i]);
+        }
+        pixelListeners = [];
+    }
 }
 
 
@@ -30,7 +47,7 @@ function styleInactiveButton(button) {
     button.style.color = '#edf2f4';
     button.style.borderColor = '#edf2f4';
     button.classList.remove('.active-resolution-button');
-    button.style.scale='.91';
+    button.style.scale = '.91';
 }
 
 function styleActiveButton(button) {
@@ -38,7 +55,7 @@ function styleActiveButton(button) {
     button.style.color = '#2b2d42';
     button.style.borderColor = '#8d99ae';
     button.classList.add('.active-resolution-button');
-    button.style.scale='1.1';
+    button.style.scale = '1.1';
 }
 
 //Reset board with new resolution
@@ -61,21 +78,21 @@ let pixelColor = 'black';
 
 //Add functionality to the erase button
 const eraseButton = document.getElementById('erase-button');
-eraseButton.addEventListener('click', function() {
-    let pixels=Array.from(document.querySelectorAll('.pixel'));
-    pixels.forEach((pixel) => pixel.style.backgroundColor='#edf2f4');
+eraseButton.addEventListener('click', function () {
+    let pixels = Array.from(document.querySelectorAll('.pixel'));
+    pixels.forEach((pixel) => pixel.style.backgroundColor = '#edf2f4');
 });
-eraseButton.addEventListener('mouseenter', function() {
-    eraseButton.style.scale='1.1';
-    eraseButton.style.textShadow='0 0 2px #ef233c'
-    eraseButton.style.color='#d90429';
-    eraseButton.style.boxShadow='0 0 8px #ef233c';
+eraseButton.addEventListener('mouseenter', function () {
+    eraseButton.style.scale = '1.1';
+    eraseButton.style.textShadow = '0 0 2px #ef233c'
+    eraseButton.style.color = '#d90429';
+    eraseButton.style.boxShadow = '0 0 8px #ef233c';
 });
-eraseButton.addEventListener('mouseleave', function(){
-    eraseButton.style.scale='.91';
-    eraseButton.style.color='goldenrod';
-    eraseButton.style.textShadow='0 0 2px palegoldenrod'
-    eraseButton.style.boxShadow='0 0 8px palegoldenrod';
+eraseButton.addEventListener('mouseleave', function () {
+    eraseButton.style.scale = '.91';
+    eraseButton.style.color = 'goldenrod';
+    eraseButton.style.textShadow = '0 0 2px palegoldenrod'
+    eraseButton.style.boxShadow = '0 0 8px palegoldenrod';
 });
 
 //Add functionality to resolution buttons
@@ -87,25 +104,37 @@ resButtons.forEach((button) => {
         if (!button.classList.contains('.active-resolution-button')) {
             button.style.color = 'palegoldenrod';
             button.style.borderColor = 'palegoldenrod';
-            button.style.scale='1.1';
+            button.style.scale = '1.1';
         }
     });
     button.addEventListener('mouseleave', function () {
         if (!button.classList.contains('.active-resolution-button')) {
             button.style.color = '#edf2f4';
             button.style.borderColor = '#edf2f4';
-            button.style.scale='.91';
+            button.style.scale = '.91';
         }
     });
 });
 
 //Add functionality to color picker
-const colorPicker=document.getElementById('pen-color');
-colorPicker.addEventListener('input', function(){
- pixelColor=colorPicker.value;
+const colorPicker = document.getElementById('pen-color');
+colorPicker.addEventListener('input', function () {
+    pixelColor = colorPicker.value;
 })
 
 //Create initial board
 drawPixels(currentDim);
+var coloring = true;
+var allPixels = Array.from(document.querySelectorAll('.pixel'));
+var pixelListeners = []; //event listeners (saved for removal)
 activatePixels();
 styleActiveButton(document.getElementById('initial-res-button'));
+
+//Add functionaity to toggle coloring
+const body = document.getElementById('body-all');
+body.addEventListener('keydown', function (event) {
+    if (event.shiftKey) {
+        toggleColor();
+    }
+});
+

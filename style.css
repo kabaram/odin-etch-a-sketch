@@ -72,6 +72,29 @@ body{
     width: 100%;
 }
 
+#pen-on-indicator-container{
+    display: flex;
+    background-color: black;
+    color: goldenrod;
+    justify-content: left;
+    justify-items: left;
+    align-self: self-start;
+    white-space: pre;
+}
+
+#pen-on-indicator{
+    background-color: black;
+    color:chartreuse;
+    text-shadow: none;
+    align-content: center;
+}
+
+#toggle-shift{
+    background-color: black;
+    color: goldenrod;
+    font-size: 12px;
+}
+
 #pen-color{
     width: 80%;
     height: 10vh;

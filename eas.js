@@ -2,6 +2,17 @@
 function toggleColor() {
     coloring = !coloring;
     activatePixels();
+
+    let container = document.getElementById('pen-on-indicator-container');
+    let onIndicator = document.getElementById('pen-on-indicator');
+    if(coloring==true){
+        onIndicator.textContent = 'ON';
+        onIndicator.style.color='chartreuse';
+    }
+    else{
+        onIndicator.textContent = 'OFF';
+        onIndicator.style.color = 'firebrick';
+    }
 }
 
 //Add functionality to color pixels on mouse hover
@@ -25,6 +36,9 @@ function activatePixels() {
 //Produce a dim * dim grid of "pixels" on the screen element
 //Function adapted from the contribution of Chris Gessler via StackOverflow
 function drawPixels(dim) {
+    for (let i = 0; i < allPixels.length; i++){
+        allPixels[i].remove();
+    }
     //Calculate percentage of screen allocated to single pixel dimension
     let percent = Math.floor(1.0 / dim * 100);
     let screen = document.querySelector('.screen');
@@ -40,6 +54,7 @@ function drawPixels(dim) {
         }
         screen.appendChild(row);
     }
+    allPixels = Array.from(document.querySelectorAll('.pixel'));
 }
 
 function styleInactiveButton(button) {
@@ -65,6 +80,7 @@ function onResButtonClick(resButtons, selectedButton) {
     if (size !== currentDim) {
         let screen = document.querySelector('.screen');
         screen.innerHTML = '';
+        pixelListeners = [];
         drawPixels(size);
         activatePixels();
         currentDim = size;
@@ -123,9 +139,9 @@ colorPicker.addEventListener('input', function () {
 })
 
 //Create initial board
+var allPixels = [];
 drawPixels(currentDim);
 var coloring = true;
-var allPixels = Array.from(document.querySelectorAll('.pixel'));
 var pixelListeners = []; //event listeners (saved for removal)
 activatePixels();
 styleActiveButton(document.getElementById('initial-res-button'));
